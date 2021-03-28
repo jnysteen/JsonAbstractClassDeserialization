@@ -17,7 +17,7 @@ namespace Core.Serialization
             _typeMapping = CreateEventTypeMap(assembliesWithEvents);
         }
 
-        private Dictionary<string, Type> CreateEventTypeMap(Assembly[] assembliesWithEvents)
+        private static Dictionary<string, Type> CreateEventTypeMap(Assembly[] assembliesWithEvents)
         {
             var typeMap = new Dictionary<string, Type>();
 
@@ -25,14 +25,14 @@ namespace Core.Serialization
             {
                 var allEventImplementations = assemblyWithEvents
                     .GetTypes()
-                    .Where(t => t.IsAssignableTo(typeof(Event)) && !t.IsAbstract);
+                    .Where(t => t.IsSubclassOf(typeof(Event)) && !t.IsAbstract);
 
                 foreach (var eventImpl in allEventImplementations)
                 {
                     var eventTypeProperty = eventImpl.GetProperty(nameof(Event.EventType));
                     var eventInstance = Activator.CreateInstance(eventImpl);
                     var eventTypeValue = eventTypeProperty.GetValue(eventInstance) as string; // TODO throw if anything here is null
-                    _typeMapping.Add(eventTypeValue, eventImpl);
+                    typeMap.Add(eventTypeValue, eventImpl);
                 }
             }
 
