@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Models
+namespace Core.Serialization
 {
     public class EventJsonConverter : JsonConverter
     {

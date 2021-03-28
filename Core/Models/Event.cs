@@ -1,4 +1,4 @@
-namespace Models
+namespace Core.Models
 {
     public abstract class Event
     {

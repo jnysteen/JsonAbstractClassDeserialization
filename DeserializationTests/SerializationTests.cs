@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Core.Models;
+using Core.Serialization;
 using FluentAssertions;
-using Models;
 using NUnit.Framework;
 
 namespace DeserializationTests

@@ -1,7 +1,8 @@
 using System.Reflection;
+using Core.Models;
 using Newtonsoft.Json;
 
-namespace Models
+namespace Core.Serialization
 {
     public static class Serialization
     {
