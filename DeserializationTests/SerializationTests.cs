@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Core;
 using Core.Models;
-using Core.Serialization;
+using Core.Newtonsoft;
+using Core.SystemTextJson;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -8,8 +12,8 @@ namespace DeserializationTests
 {
     public class SerializationTests
     {
-        [Test]
-        public void CanDeserializeToAbstractClass()
+        [TestCaseSource(nameof(SerializerTestCases))]
+        public void CanDeserializeToAbstractClass(IJsonSerializer serializer)
         {
             // Arrange
             var orderPlacedEvent = new OrderPlacedEvent
@@ -27,13 +31,19 @@ namespace DeserializationTests
             };
             
             // Act 
-            var serialized = Serialization.SerializeToJson(orderPlacedEvent);
-            var deserialized = Serialization.DeserializeJson<Event>(serialized);
+            var serialized = serializer.SerializeToJson(orderPlacedEvent);
+            var deserialized = serializer.DeserializeJson<Event>(serialized);
 
             // Assert
             deserialized.Should().NotBeNull("the deserialization should have produced something");
             deserialized.Should().BeOfType<OrderPlacedEvent>("the deserialized instance should be an OrderPlacedEvent");
             deserialized.Should().BeEquivalentTo(orderPlacedEvent);
         }
+        
+        static object[] SerializerTestCases =
+        {
+            new object[] { new NewtonsoftEventSerializer(Assembly.GetAssembly(typeof(Event))) },
+            new object[] { new SystemTextJsonEventSerializer(Assembly.GetAssembly(typeof(Event))) },
+        };
     }
 }

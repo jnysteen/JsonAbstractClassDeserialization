@@ -6,37 +6,15 @@ using Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Core.Serialization
+namespace Core.Newtonsoft
 {
-    public class EventJsonConverter : JsonConverter
+    public class NewtonsoftEventJsonConverter : JsonConverter
     {
         private readonly Dictionary<string, Type> _typeMapping;
 
-        public EventJsonConverter(params Assembly[] assembliesWithEvents)
+        public NewtonsoftEventJsonConverter(params Assembly[] assembliesWithEvents)
         {
-            _typeMapping = CreateEventTypeMap(assembliesWithEvents);
-        }
-
-        private static Dictionary<string, Type> CreateEventTypeMap(Assembly[] assembliesWithEvents)
-        {
-            var typeMap = new Dictionary<string, Type>();
-
-            foreach (var assemblyWithEvents in assembliesWithEvents)
-            {
-                var allEventImplementations = assemblyWithEvents
-                    .GetTypes()
-                    .Where(t => t.IsSubclassOf(typeof(Event)) && !t.IsAbstract);
-
-                foreach (var eventImpl in allEventImplementations)
-                {
-                    var eventTypeProperty = eventImpl.GetProperty(nameof(Event.EventType));
-                    var eventInstance = Activator.CreateInstance(eventImpl);
-                    var eventTypeValue = eventTypeProperty.GetValue(eventInstance) as string; // TODO throw if anything here is null
-                    typeMap.Add(eventTypeValue, eventImpl);
-                }
-            }
-
-            return typeMap;
+            _typeMapping = EventImplementationScanner.FindEventImplementations(assembliesWithEvents);
         }
 
         public override bool CanConvert(Type objectType)
