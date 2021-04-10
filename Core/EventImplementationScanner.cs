@@ -21,8 +21,10 @@ namespace Core
                 foreach (var eventImpl in allEventImplementations)
                 {
                     var eventTypeProperty = eventImpl.GetProperty(nameof(Event.EventType));
+                    // TODO throw if anything here is null
                     var eventInstance = Activator.CreateInstance(eventImpl);
-                    var eventTypeValue = eventTypeProperty.GetValue(eventInstance) as string; // TODO throw if anything here is null
+                    var eventTypeValue = eventTypeProperty.GetValue(eventInstance) as string;
+                    // TODO throw if duplicates are detected
                     typeMap.Add(eventTypeValue, eventImpl);
                 }
             }

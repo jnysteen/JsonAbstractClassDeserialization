@@ -23,9 +23,7 @@ namespace Core.SystemTextJson
         public override Event Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType != JsonTokenType.StartObject)
-            {
                 throw new JsonException();
-            }
 
             using (var jsonDocument = JsonDocument.ParseValue(ref reader))
             {
