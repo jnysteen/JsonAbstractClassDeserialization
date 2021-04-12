@@ -8,7 +8,8 @@ using Deserialization.Models;
 namespace Deserialization.SystemTextJson
 {
     /// <summary>
-    ///     Strongly inspired by https://stackoverflow.com/questions/58074304/is-polymorphic-deserialization-possible-in-system-text-json
+    ///     A converter (for System.Text.Json) handling serialization/deserialization of the abstract <see cref="Event"/> class.   
+    ///     Inspired by https://stackoverflow.com/questions/58074304/is-polymorphic-deserialization-possible-in-system-text-json
     /// </summary>
     public class SystemTextJsonEventConverter : JsonConverter<Event>
     {

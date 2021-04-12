@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Deserialization.Models
 {
+    /// <summary>
+    ///     A concrete implementation of an <see cref="Event"/>
+    /// </summary>
     public class OrderPlacedEvent : OrderEvent
     {
         public override string EventType => "OrderPlaced";

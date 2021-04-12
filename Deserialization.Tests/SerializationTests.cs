@@ -10,7 +10,7 @@ namespace Deserialization.Tests
 {
     public class SerializationTests
     {
-        [TestCaseSource(nameof(SerializerTestCases))]
+        [TestCaseSource(nameof(_serializerTestCases))]
         public void CanDeserializeToAbstractClass(IJsonSerializer serializer)
         {
             // Arrange
@@ -38,7 +38,7 @@ namespace Deserialization.Tests
             deserialized.Should().BeEquivalentTo(orderPlacedEvent);
         }
         
-        static object[] SerializerTestCases =
+        static object[] _serializerTestCases =
         {
             new object[] { new NewtonsoftEventSerializer(Assembly.GetAssembly(typeof(Event))) },
             new object[] { new SystemTextJsonEventSerializer(Assembly.GetAssembly(typeof(Event))) },

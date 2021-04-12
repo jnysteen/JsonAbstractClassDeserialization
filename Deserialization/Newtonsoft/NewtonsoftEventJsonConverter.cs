@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Deserialization.Newtonsoft
 {
+    /// <summary>
+    ///     A converter (for Newtonsoft.Json) handling serialization/deserialization of the abstract <see cref="Event"/> class.
+    /// </summary>
     public class NewtonsoftEventJsonConverter : JsonConverter
     {
         private readonly Dictionary<string, Type> _typeMapping;
@@ -23,17 +26,14 @@ namespace Deserialization.Newtonsoft
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JObject jObject = JObject.Load(reader);
+            var jObject = JObject.Load(reader);
 
             var discriminator = jObject[nameof(Event.EventType)]?.Value<string>();
             if (discriminator == null)
                 return null;
 
             var canRecognizeType = _typeMapping.TryGetValue(discriminator, out var typeToDeserializeTo);
-            if (!canRecognizeType)
-                return null;
-            
-            return jObject.ToObject(typeToDeserializeTo, serializer);
+            return !canRecognizeType ? null : jObject.ToObject(typeToDeserializeTo, serializer);
         }
 
         public override bool CanWrite => false;
