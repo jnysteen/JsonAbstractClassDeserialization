@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Core.Models;
+using Deserialization.Models;
 
-namespace Core
+namespace Deserialization
 {
     public static class EventImplementationScanner
     {

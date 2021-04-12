@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{A7910A6F-F7B4-47DC-8371-35B2BC8E538A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deserialization", "Deserialization\Deserialization.csproj", "{A7910A6F-F7B4-47DC-8371-35B2BC8E538A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeserializationTests", "DeserializationTests\DeserializationTests.csproj", "{D5C8B1A7-E57E-4BC6-A169-64D860B73D36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deserialization.Tests", "Deserialization.Tests\Deserialization.Tests.csproj", "{D5C8B1A7-E57E-4BC6-A169-64D860B73D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Text.Json;
 
-namespace Core.SystemTextJson
+namespace Deserialization.SystemTextJson
 {
     public class SystemTextJsonEventSerializer : IJsonSerializer
     {

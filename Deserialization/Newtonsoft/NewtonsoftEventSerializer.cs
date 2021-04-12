@@ -1,7 +1,7 @@
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Core.Newtonsoft
+namespace Deserialization.Newtonsoft
 {
     public class NewtonsoftEventSerializer : IJsonSerializer
     {

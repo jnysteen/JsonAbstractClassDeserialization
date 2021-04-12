@@ -1,4 +1,4 @@
-namespace Core
+namespace Deserialization
 {
     public interface IJsonSerializer
     {

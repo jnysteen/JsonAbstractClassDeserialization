@@ -1,4 +1,4 @@
-namespace Core.Models
+namespace Deserialization.Models
 {
     public abstract class Event
     {

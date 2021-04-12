@@ -1,14 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using Core;
-using Core.Models;
-using Core.Newtonsoft;
-using Core.SystemTextJson;
+using Deserialization.Models;
+using Deserialization.Newtonsoft;
+using Deserialization.SystemTextJson;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace DeserializationTests
+namespace Deserialization.Tests
 {
     public class SerializationTests
     {

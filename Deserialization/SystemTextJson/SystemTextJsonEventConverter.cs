@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Core.Models;
+using Deserialization.Models;
 
-namespace Core.SystemTextJson
+namespace Deserialization.SystemTextJson
 {
     /// <summary>
     ///     Strongly inspired by https://stackoverflow.com/questions/58074304/is-polymorphic-deserialization-possible-in-system-text-json
